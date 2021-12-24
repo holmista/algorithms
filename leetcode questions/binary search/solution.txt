@@ -1,0 +1,43 @@
+Given an array of integers nums which is sorted in ascending order, and an integer target, write a function to search target in nums.
+If target exists, then return its index. Otherwise, return -1.
+You must write an algorithm with O(log n) runtime complexity
+
+To solve this problem, I'll use binary search algorithm. In this algorithm the array should be sorted and the array shouldn't be empty.
+implementation of the algorithm:
+We begin by defining bounds of the array. The bounds of the array form an interval in which we will search the target number. We will also define
+the middle point, against which we will test our target, only the middle point of the interval will be checked. After this, if the middle number
+is greater than the target, we move lower bound to be equal to index of middle number + 1, if the middle number is less than the middle number,
+we move the upper bound down to index middle number - 1. So we basically narrow our search down to certain numbers and we don't have to check every
+single number in the array Let's see an example:
+arr = [1,2,3,4,5], target = 4
+l = 0 3
+r = 4 4
+m = 2 3
+In the example we see left, right and middle indecies. The left index is initially 0, the right - 4 and the middle - 2((right+left)//2). We see that
+number indexed 2(current middle number) is less than the target(3<4) so we move left bound up, to index 3(value 4), the right bound remains
+unchainged and it's 4(value 5) and the middle point is 3(value 4). After this we check the middle number and we see it's equal to the target,
+we end the algorithm and return m. A very important point is that we set left or right indecies to middle + 1 or middle - 1 respectively.
+If we set them to be equal to just middle, the algorithm wouldn't work and here's why:
+Let's consider the previous example but instead of 4, let's set our target to be 5. If we implemented the algorithm correctly, we would get:
+l = 0 3 4
+r = 4 4 4
+m = 2 3 4
+Our middle point got to index 4 which means we found our target. Now, if we implemented the algorithm without adding 1, we would get:
+l = 0 2 3 3
+r = 4 4 4 4
+m = 2 3 3 3
+As we see 3,4,3 sequence will be repeated infinitely and we will never get the answer, however if we calculate middle point differently, the
+above approach would work, namely if we set the middle point to be equal to ceil((r+l)/2)
+l = 0 2 3 4
+r = 4 4 4 4
+m = 2 3 4 4
+In this case we successfully find our target.
+Another important thing we've not yet talked about is how are we going to update our l, r and m points. Well, that's simple. We will run a 
+while loop on this conddition l<=r. So while our lower bound is less than or equal to the right bound, we run the loop and if our loop condition
+evaluates to false it will mean that our target doesn't exist in the array. Let's see an example:
+arr = [1,2,3], target = 7
+l = 0 2 3
+r = 2 2 2
+m = 1 2 2
+We see that l became greater than r which indicates that our target doesn't exist in the loop so we return -1, meaning the answer couldn't be found
+
