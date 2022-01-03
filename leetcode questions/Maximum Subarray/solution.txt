@@ -1,0 +1,23 @@
+Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
+
+To solve this problem, I'll use a linear approach. So, the array isn't sorted in this case which means we can't just pick all the positive numbers in the array and sum them up,
+instead we should consider carefully which numbers to include in the sum. To do this let's take an example.
+
+arr = [2, -1, 8, 4, -4, 11, 3, -5]
+
+We begin with sum = 2 and add numbers to the sum from that point on. 2 + (-1) = -1. We see that adding an adjacent number decreased the sum, meaning
+that we shouldn't consider the maximum sum to be 1 but rather 2. Then we add 8 and we see the sum has increased to 9, making it the maximum sum, overtaking 2.
+If the array consisted of just first 3 numbers, we would return 9 as maximum sum despite there's a negative number in the sum. Negative numbers shouldn't really
+scare us from adding them to the sum because they might be adjacent to a big(in our case) number like 8. So if we didn't add -1 to the sum, we would either
+return 2 or 8 as the maximum sum(depending on the logic behind) which would be a wrong answer, anyways, let's keep going. With 4 as the next number,
+the maximum increases to 13 but then we got -4. The maximum sum stays the same - 13 but sum decreases back to 9. Next we add 11 to the sum and both, 
+sum and maximum sum become 20, after adding 3 and -5 our sum is 18 and the maximum sum is 23. In this case the answer is 23. Let's consider another
+example to see a certain edge case.
+
+arr = [2,-4, 3, 1]
+
+In this example, until we reach number 3, maximum sum is 2 and the sum is -2. So if we add 3 to the sum we get 1. It seems that it would be better to disregard 
+the previous numbers(2 and -4), make sum equal to 3 and begin adding upcoming numbers to 3. Moreover, maximum sum should also be equal to 3 instead of 2.
+After this we just add 1 to the sum and return 4 as the maximum sum. The key in this example is to think about the previous numbers as a batch which
+can increase or decrease based on the next number. If the next number alone is greater than the batch with that number included,
+it means that there's no point in adding that number and we should just get rid of the batch and start a new one from scratch with the next number.
