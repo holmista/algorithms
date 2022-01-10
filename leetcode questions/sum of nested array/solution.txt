@@ -1,0 +1,13 @@
+create a function which will compute the sum of array elements recursively. Array elements can be arrays themselves.
+
+example
+
+if the input is [1, 2, [3,4], [ 5, [6,7] ] ] the function should return 28
+
+It is simple to compute sum of array elements using a for loop but when the elements are arrays, that makes the job harder.
+We can't simply iterate over an array and sum elements up because if we try to add a numeric value to an array, there will be an error.
+So, before summing up, we should determine whether the element is a numeric value or an array. If it is a numeric value, we simply
+add it to our sum but if the element is an array, first we should sum up the array and only after that add that sum to our sum.
+So if an element is an array, we call the same function we defined to solve this problem on that element and add that result to our sum.
+The function itself will return a sum of array elements.
+
