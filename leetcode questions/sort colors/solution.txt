@@ -1,0 +1,15 @@
+Given an array nums with n objects colored red, white, or blue, sort them in-place so that objects of the same color are adjacent, with the colors in the order red, white, and blue.
+We will use the integers 0, 1, and 2 to represent the color red, white, and blue, respectively.
+You must solve this problem without using the library's sort function.
+
+example:
+Input: nums = [2,0,2,1,1,0]
+Output: [0,0,1,1,2,2]
+
+In this problem we should basically sort the array in place. To do that, we can check each element and its preceding one and swap them if the current one is less than
+the preceding one. Howeever, if we iterate over the array just once, it's not guaranteed that the array will be sorted.
+example:
+nums = [2,2,1]
+In the example above the first element is 2 and the second one is 2 as well so we don't swap them. The third element is 1 so we swap it with 2. In the end we get [2,1,2].
+Obviously this array is not sorted. Instead of iterating over it once, we should iterate over it as long as all elements are sorted. The way we finally know that the
+array is sorted is that we check if any swap occured. If there was no swap after we completed the iteration, it means the array is sorted.
