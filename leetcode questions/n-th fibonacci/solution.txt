@@ -1,0 +1,20 @@
+This is a problem to calculate n-th fibonacci number which firstly I solved by recursion but there's a big flaw to it,
+here's an example:
+
+Let's say we want to calculate 5-th fibonacci number, the method I used previously looked like this:
+                                        5
+                                    /       \
+                                    4        3
+                                  /  \     /  \
+                                  3   2   2    1
+                                 / \ / \ / \
+                                2  1 1 0 1  0
+                               / \
+                              1   0
+
+In this method we have to calculate number 3 two times and number 2 three times.
+numbers 1 and 0 are also calculated multiple times. If the number was bigger than 5, we would have to unnecessarily
+recalculate the same numbers again and again. In order to eliminate this inefficiency we can simply store the values
+we have already calculated and when it's time to calculate a certain value we firstly will check if we have already
+calculated it. If that's the case we simply use already calculated value, else we calculate that value and store it.
+This method requires more memory though.
