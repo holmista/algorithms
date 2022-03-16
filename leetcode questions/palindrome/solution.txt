@@ -1,0 +1,10 @@
+This problem is rather simple. A palindrome is a combination of symbols(in our case only alphanumerics)
+which can be read from left to right and from right to left the same way.
+
+example: bob
+
+Firstly we filter the input from all non alphanumeric characters and then we use pointer like approach.
+We track the beginning and the end of the filtered string and iterate over it by moving pointers by one step.
+On each iteration we check if both character are equal and if they are not we return false, otherwise true
+once we exit the loop
+
