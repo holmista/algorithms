@@ -10,11 +10,16 @@ interface IEvent {
 const testEvent: IEvent = {
   eventName: "test",
   callbacks: [
-    () => {
-      console.log("listening for test event");
+    function (): Promise<void> {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          console.log("listening for test event 1");
+          resolve();
+        }, 3000);
+      });
     },
-    () => {
-      console.log("listening for test event again");
+    function () {
+      console.log("listening for test event 2");
     },
   ],
 };

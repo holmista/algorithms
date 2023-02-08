@@ -1,6 +1,6 @@
 import MyEvent from "./MyEvent.js";
 
 function testEvents() {
-  MyEvent.dispatchEvent("test");
+  MyEvent.dispatchEventAsync("test");
 }
 export default testEvents;

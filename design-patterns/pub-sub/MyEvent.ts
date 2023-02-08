@@ -9,10 +9,18 @@ class MyEvent {
       this.events.set(eventName, [...callbacks, callback]);
     } else throw new Error("Event not found");
   }
-  static dispatchEvent(eventName: string) {
+  static dispatchEventAsync(eventName: string) {
     if (this.events.has(eventName)) {
       const callbacks = this.events.get(eventName) as Function[];
       callbacks.forEach((callback) => callback());
+    } else throw new Error("Event not found");
+  }
+  static async dispatchEventSync(eventName: string) {
+    if (this.events.has(eventName)) {
+      const callbacks = this.events.get(eventName) as Function[];
+      for (const callback of callbacks) {
+        await callback();
+      }
     } else throw new Error("Event not found");
   }
 }
